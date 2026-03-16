@@ -1,3 +1,4 @@
+/* arquivo de configurações das páginas */
 import { Stack } from 'expo-router';
 
 export default function RootLayout() {
@@ -9,12 +10,17 @@ export default function RootLayout() {
         headerTitleStyle: { fontWeight: 'bold' },
       }}
     >
-      {/* 💡 Esconde o header só na tela de login */}
+      {/* 💡 Esconde o header padrão na tela de login */}
       <Stack.Screen name="login" options={{ headerShown: false }} />
 
+
       <Stack.Screen
-        name="home"
-        options={{ title: 'Início' }}
+        name="maioridade"
+        options={{ title: 'Verificar Maioridade' }}
+      />
+      <Stack.Screen
+        name="imc"
+        options={{ title: 'Calcular IMC' }}
       />
     </Stack>
   );

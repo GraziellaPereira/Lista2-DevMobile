@@ -17,8 +17,7 @@ export default function HomeScreen() {
       <Text style={styles.nome}>{nome}!</Text>
 
       <Text style={styles.texto}>
-        Você está na tela Home.{'\n'}
-        O nome veio como parâmetro da tela de Login.
+        Bem vindo a Home2{'\n'}
       </Text>
 
       {/* 💡 router.back() volta para o Login */}
