@@ -1,29 +1,34 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useRouter, useLocalSearchParams } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { useState } from 'react';
 
-// 💡 useLocalSearchParams lê o parâmetro "nome" que veio do login
-//    router.push(`/home?nome=${usuario}`)  →  params.nome === "maria"
+export default function App() {
+  const [text, setText] = useState('');
+ 
+  const[idade, setIdade] = useState(0);
 
-export default function HomeScreen() {
-  const router = useRouter();
-  const params = useLocalSearchParams();
-
-  const nome = params.nome as string;
+  function verificarIdade() 
+  {
+    if (idade >= 18) {
+      alert('Você é maior de idade!');
+    } else {
+      alert('Você é menor de idade!');
+    }
+  }
 
   return (
     <View style={styles.container}>
-      
-      <Text style={styles.bemVindo}>Bem-vindo,</Text>
-      <Text style={styles.nome}>{nome}!</Text>
-
-      <Text style={styles.texto}>
-        Bem vindo a Home2{'\n'}
-      </Text>
-
-      {/* 💡 router.back() volta para o Login */}
-      <TouchableOpacity style={styles.botao} onPress={() => router.back()}>
-        <Text style={styles.botaoTexto}>← Sair</Text>
-      </TouchableOpacity>
+      <Text>Olá! Vamos informar se você é maior ou menor de idade.</Text>
+      <View style={{ marginTop: 20 }}>
+      <TextInput style={styles.input}
+       placeholder='Digite sua Idade'
+       onChangeText={(valor) => setIdade(Number(valor))}
+      /> 
+      </View>
+         <View style={{ marginTop: 20 }}>
+          <Button onPress={verificarIdade} title="Verificar Maioridade" />
+      <StatusBar style="auto" />
+    </View>
     </View>
   );
 }
@@ -31,39 +36,15 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 28,
-    gap: 8,
   },
-  bemVindo: {
-    fontSize: 22,
-    color: '#888',
-  },
-  nome: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: '#6C63FF',
-    marginBottom: 16,
-  },
-  texto: {
-    fontSize: 14,
-    color: '#999',
-    textAlign: 'center',
-    lineHeight: 22,
-    marginBottom: 16,
-  },
-  botao: {
-    backgroundColor: '#6C63FF',
-    paddingHorizontal: 32,
-    paddingVertical: 14,
-    borderRadius: 12,
-    marginTop: 8,
-  },
-  botaoTexto: {
-    color: '#fff',
-    fontSize: 15,
-    fontWeight: '600',
-  },
+  input : {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    padding: 10,
+    width: '80%',
+  }
 });
